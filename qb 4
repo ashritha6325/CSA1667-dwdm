@@ -1,0 +1,25 @@
+# Data
+data <- c(200, 300, 400, 600, 1000)
+
+# (a) Min-Max Normalization (min = 0, max = 1)
+min_val <- min(data)
+max_val <- max(data)
+min_max_normalization <- (data - min_val) / (max_val - min_val)
+cat("Min-Max Normalization: ", min_max_normalization, "\n")
+
+# (b) Z-Score Normalization
+mean_val <- mean(data)
+sd_val <- sd(data)
+z_score_normalization <- (data - mean_val) / sd_val
+cat("Z-Score Normalization: ", z_score_normalization, "\n")
+
+# (c) Z-Score Normalization using Mean Absolute Deviation
+mean_abs_dev <- mean(abs(data - mean_val))
+z_score_mad_normalization <- (data - mean_val) / mean_abs_dev
+cat("Z-Score Normalization with MAD: ", z_score_mad_normalization, "\n")
+
+# (d) Decimal Scaling Normalization
+max_abs_val <- max(abs(data))
+j <- ceiling(log10(max_abs_val))
+decimal_scaling_normalization <- data / 10^j
+cat("Decimal Scaling Normalization: ", decimal_scaling_normalization, "\n")
