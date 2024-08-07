@@ -1,0 +1,33 @@
+# Sales price records
+sales_prices <- c(5, 10, 11, 13, 15, 35, 50, 55, 72, 92, 204, 215)
+
+# (a) Equal-frequency (equi-depth) partitioning
+equal_freq_bins <- cut(sales_prices, 
+                       breaks = quantile(sales_prices, probs = seq(0, 1, length.out = 4)), 
+                       include.lowest = TRUE, 
+                       labels = FALSE)
+
+# Display equal-frequency partitioning
+equal_freq_partition <- split(sales_prices, equal_freq_bins)
+cat("Equal-Frequency Partitioning:\n")
+print(equal_freq_partition)
+
+# (b) Equal-width partitioning
+equal_width_bins <- cut(sales_prices, 
+                        breaks = seq(min(sales_prices), max(sales_prices), length.out = 4), 
+                        include.lowest = TRUE, 
+                        labels = FALSE)
+
+# Display equal-width partitioning
+equal_width_partition <- split(sales_prices, equal_width_bins)
+cat("\nEqual-Width Partitioning:\n")
+print(equal_width_partition)
+
+# (c) Clustering (using k-means clustering)
+set.seed(123)  # For reproducibility
+kmeans_result <- kmeans(sales_prices, centers = 3)
+
+# Display clustering result
+clustering_partition <- split(sales_prices, kmeans_result$cluster)
+cat("\nClustering Partitioning:\n")
+print(clustering_partition)
