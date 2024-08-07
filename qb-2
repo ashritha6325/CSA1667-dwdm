@@ -1,0 +1,10 @@
+@relation gadget_factory_decision
+@attribute decision {expand, no_expand}
+@attribute economy {good, bad}
+@attribute revenue numeric
+
+@data
+no_expand, good, 4000000
+no_expand, bad, 1500000
+expand, good, 7000000
+expand, bad, 3000000
