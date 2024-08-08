@@ -1,0 +1,36 @@
+# Creating dataframes for each class
+class_A <- c(76, 35, 47, 64, 95, 66, 89, 36, 8476, 35, 47, 64, 95, 66, 89, 36, 84)
+class_B <- c(51, 56, 84, 60, 59, 70, 63, 66, 5051, 56, 84, 60, 59, 70, 63, 66, 50)
+
+# Calculating mean, median, and range for Class A
+mean_A <- mean(class_A)
+median_A <- median(class_A)
+range_A <- range(class_A)
+range_A_diff <- diff(range_A)
+
+# Calculating mean, median, and range for Class B
+mean_B <- mean(class_B)
+median_B <- median(class_B)
+range_B <- range(class_B)
+range_B_diff <- diff(range_B)
+
+# Output the results
+cat("Class A Mean:", mean_A, "\n")
+cat("Class A Median:", median_A, "\n")
+cat("Class A Range:", range_A_diff, "\n")
+
+cat("Class B Mean:", mean_B, "\n")
+cat("Class B Median:", median_B, "\n")
+cat("Class B Range:", range_B_diff, "\n")
+
+# Creating dataframes for plotting
+data <- data.frame(
+  Scores = c(class_A, class_B),
+  Class = factor(rep(c("Class A", "Class B"), each=length(class_A)))
+)
+
+# Boxplot without ggplot2
+boxplot(Scores ~ Class, data=data, main="Boxplot of Class Scores", xlab="Class", ylab="Scores", col=c("lightblue", "lightgreen"))
+
+# Add grid
+grid()
