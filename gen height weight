@@ -1,0 +1,16 @@
+@relation gender_weight_height
+
+@attribute Gender {male, female}
+@attribute Weight numeric
+@attribute Height numeric
+@attribute Class {Light, Heavy, Short, Tall}
+
+@data
+male, 75, 175, Light
+male, 85, 180, Heavy
+female, 155, 165, Short
+female, 170, 170, Tall
+male, 70, 160, Light
+female, 165, 150, Short
+male, 90, 190, Heavy
+female, 160, 160, Tall
