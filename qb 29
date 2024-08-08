@@ -1,0 +1,40 @@
+# Load necessary libraries
+library(cluster)
+
+# Scores data
+scores <- c(55, 60, 71, 63, 55, 65, 50, 55, 58, 59, 61, 63, 65, 67, 71, 72, 75)
+
+# Convert scores to a data frame
+scores_df <- data.frame(scores)
+
+# Function to plot histogram
+plot_histogram <- function(data, bin_labels, title) {
+  hist(data$scores, breaks = seq(min(data$scores) - 0.5, max(data$scores) + 0.5, by = 1), 
+       col = bin_labels, main = title, xlab = "Scores", ylab = "Count", border = "white")
+}
+
+# (a) Equal-frequency (equi-depth) partitioning
+equal_freq_bins <- ntile(scores_df$scores, 3)
+scores_df$equal_freq_bins <- factor(equal_freq_bins, labels = c("red", "green", "blue"))
+
+# Plot histogram for equal-frequency partitioning
+plot_histogram(scores_df, scores_df$equal_freq_bins, "Equal-frequency (Equi-depth) Partitioning")
+
+# (b) Equal-width partitioning
+breaks <- seq(min(scores), max(scores), length.out = 4)
+equal_width_bins <- cut(scores, breaks = breaks, labels = c("red", "green", "blue"), include.lowest = TRUE)
+scores_df$equal_width_bins <- equal_width_bins
+
+# Plot histogram for equal-width partitioning
+plot_histogram(scores_df, scores_df$equal_width_bins, "Equal-width Partitioning")
+
+# (c) Clustering (using k-means)
+set.seed(123)
+kmeans_result <- kmeans(scores_df$scores, centers = 3)
+scores_df$kmeans_bins <- factor(kmeans_result$cluster, labels = c("red", "green", "blue"))
+
+# Plot histogram for clustering
+plot_histogram(scores_df, scores_df$kmeans_bins, "Clustering Partitioning")
+
+# Print the data frame to check the bin assignments
+print(scores_df)
