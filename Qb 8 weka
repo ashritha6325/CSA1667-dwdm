@@ -1,0 +1,12 @@
+@relation diabetes
+@attribute age numeric
+@attribute bmi numeric
+@attribute glucose numeric
+@attribute insulin numeric
+@attribute outcome {yes, no}
+@data
+50, 25.1, 145, 85, yes
+30, 23.5, 130, 70, no
+45, 30.2, 150, 90, yes
+35, 24.0, 135, 75, no
+
