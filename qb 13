@@ -1,0 +1,28 @@
+# Create the dataset
+prices <- c(1, 1, 5, 5, 5, 5, 5, 8, 8, 10, 10, 10, 10, 12, 14, 14, 14, 15, 15, 15, 15, 15, 15, 
+            18, 18, 18, 18, 18, 18, 18, 18, 20, 20, 20, 20, 20, 20, 20, 21, 21, 21, 21, 25, 25, 
+            25, 25, 25, 28, 28, 30, 30, 30)
+
+# Create a data frame
+df <- data.frame(prices)
+
+# (i) Equal-Frequency Partitioning into 3 bins
+# Define the breaks for equal-frequency bins
+quantiles <- quantile(df$prices, probs = 0:3/3)
+df$bin <- cut(df$prices, breaks = quantiles, include.lowest = TRUE, labels = c("Bin1", "Bin2", "Bin3"))
+
+# (ii) Data smoothing using bin means
+# Compute means for each bin
+bin_means <- tapply(df$prices, df$bin, mean)
+# Replace prices with bin means for smoothing
+df$smooth_prices <- bin_means[as.character(df$bin)]
+
+# (iii) Plot Histogram for the above frequency division
+# Original Data Histogram
+hist(df$prices, breaks = 15, col = "blue", main = "Histogram of Original Prices", xlab = "Price", ylab = "Frequency")
+
+# Smoothed Data Histogram
+hist(df$smooth_prices, breaks = 15, col = "red", main = "Histogram of Smoothed Prices", xlab = "Smoothed Price", ylab = "Frequency")
+
+# Print the data frame to check the result
+print(df)
