@@ -1,0 +1,28 @@
+# Load necessary libraries (if any)
+# library(dplyr)
+
+# Create a dataframe with sample data
+df <- data.frame(age = c(20, 25, 30, 35, 40, 45, 50, 55, 60, 65, 70, 75, 80, 85, 90, 95, 100, 105))
+
+# Display the dataframe
+print("Original DataFrame:")
+print(df)
+
+# Min-Max Normalization
+age_min <- min(df$age)
+age_max <- max(df$age)
+value <- 35
+normalized_value_min_max <- (value - age_min) / (age_max - age_min)
+print(paste("Min-Max Normalized Value:", normalized_value_min_max))
+
+# Z-Score Normalization
+age_mean <- mean(df$age)
+age_sd <- 12.94  # Given standard deviation
+normalized_value_z_score <- (value - age_mean) / age_sd
+print(paste("Z-Score Normalized Value:", normalized_value_z_score))
+
+# Decimal Scaling Normalization
+max_abs_value <- max(abs(df$age))
+scaling_factor <- 10^floor(log10(max_abs_value))
+normalized_value_decimal_scaling <- value / scaling_factor
+print(paste("Decimal Scaling Normalized Value:", normalized_value_decimal_scaling))
