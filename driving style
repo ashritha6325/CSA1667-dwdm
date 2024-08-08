@@ -1,0 +1,15 @@
+# Create the dataframe with car speeds
+car_speeds <- data.frame(
+  DrivingStyle = c("Regular"),
+  Speed = c(78.3, 81.8, 82, 74.2, 83.4, 84.5, 82.9, 77.5, 80.9, 70.6)
+)
+
+# Calculate Interquartile Range
+iqr <- IQR(car_speeds$Speed)
+
+# Calculate Standard Deviation
+std_dev <- sd(car_speeds$Speed)
+
+# Print results
+print(paste("Interquartile Range (IQR):", iqr))
+print(paste("Standard Deviation:", std_dev))
