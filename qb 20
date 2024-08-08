@@ -1,0 +1,11 @@
+@RELATION streaming_users
+@ATTRIBUTE Minutes_watched_per_day NUMERIC
+@ATTRIBUTE Total_viewing_sessions_per_week NUMERIC
+@ATTRIBUTE Number_of_unique_shows_viewed_per_month NUMERIC
+@ATTRIBUTE Class {HighUsage, LowUsage}  % Optional, if you want to include a class label
+@DATA
+120, 15, 25
+50, 8, 10
+200, 20, 35
+30, 5, 8
+180, 18, 30
