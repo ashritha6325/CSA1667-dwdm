@@ -1,0 +1,43 @@
+# Load necessary library
+library(dplyr)
+
+# Create the dataframe
+strike_rates <- data.frame(
+  tournament = 1:5,
+  strike_rate = c(100, 70, 60, 90, 90)
+)
+
+# (a) Min-max normalization
+min_max_normalization <- function(x, min_val, max_val) {
+  (x - min(x)) / (max(x) - min(x)) * (max_val - min_val) + min_val
+}
+
+strike_rates <- strike_rates %>%
+  mutate(min_max_norm = min_max_normalization(strike_rate, 0, 1))
+
+# (b) Z-score normalization
+z_score_normalization <- function(x) {
+  (x - mean(x)) / sd(x)
+}
+
+strike_rates <- strike_rates %>%
+  mutate(z_score_norm = z_score_normalization(strike_rate))
+
+# (c) Z-score normalization using the mean absolute deviation (MAD)
+mad_z_score_normalization <- function(x) {
+  (x - mean(x)) / mad(x)
+}
+
+strike_rates <- strike_rates %>%
+  mutate(mad_z_score_norm = mad_z_score_normalization(strike_rate))
+
+# (d) Decimal scaling normalization
+decimal_scaling_normalization <- function(x) {
+  max(abs(x)) %>% nchar() %>% {x / 10^(. - 1)}
+}
+
+strike_rates <- strike_rates %>%
+  mutate(decimal_scaling_norm = decimal_scaling_normalization(strike_rate))
+
+# Print the dataframe with all normalization results
+print(strike_rates)
