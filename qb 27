@@ -1,0 +1,8 @@
+@relation transactions
+@attribute item {milk, bread, butter, cheese, eggs}
+@data
+{0 milk, 1 bread, 2 butter}
+{0 milk, 2 butter}
+{1 bread, 3 cheese}
+{0 milk, 1 bread, 4 eggs}
+{0 milk, 2 butter, 3 cheese}
