@@ -1,0 +1,13 @@
+@relation decision_tree_data
+
+@attribute feature1 {yes, no}
+@attribute feature2 {high, medium, low}
+@attribute class {A, B}
+
+@data
+yes, high, A
+yes, medium, A
+yes, low, B
+no, high, B
+no, medium, B
+no, low, A
