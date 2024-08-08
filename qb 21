@@ -1,0 +1,26 @@
+# Creating the data frame
+pencil_data <- data.frame(
+  Box = paste0("Box", 1:9),
+  Pencils = c(25, 23, 12, 11, 6, 7, 8, 9, 10)
+)
+
+# Display the data frame
+print(pencil_data)
+
+# Calculating the mean
+mean_pencils <- mean(pencil_data$Pencils)
+print(paste("Mean:", mean_pencils))
+
+# Calculating the median
+median_pencils <- median(pencil_data$Pencils)
+print(paste("Median:", median_pencils))
+
+# Calculating the mode
+# Custom function to find the mode
+get_mode <- function(v) {
+  uniqv <- unique(v)
+  uniqv[which.max(tabulate(match(v, uniqv)))]
+}
+
+mode_pencils <- get_mode(pencil_data$Pencils)
+print(paste("Mode:", mode_pencils))
