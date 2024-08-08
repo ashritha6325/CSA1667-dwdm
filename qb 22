@@ -1,0 +1,23 @@
+# Sample data: Scores of tennis players
+scores <- c(15, 22, 27, 30, 30, 31, 33, 36, 40, 45, 50, 52, 55, 60, 65)
+
+# Create a box plot
+boxplot(scores, 
+        main="Box Plot of Tennis Players' Scores", 
+        ylab="Scores", 
+        col="lightblue", 
+        border="blue", 
+        notch=FALSE, 
+        outline=TRUE) 
+
+# Add a horizontal line for the median
+abline(h=median(scores), col="red", lty=2)
+
+# Add text annotations for the median value
+text(x=1.2, y=median(scores)+1, labels=paste("Median =", median(scores)), col="red")
+
+# Optional: Add points for outliers (in this case, there are none)
+outliers <- boxplot.stats(scores)$out
+if(length(outliers) > 0) {
+  points(rep(1, length(outliers)), outliers, col="red", pch=19)
+}
