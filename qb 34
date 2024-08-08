@@ -1,0 +1,46 @@
+# Set seed for reproducibility
+set.seed(123)
+
+# Generate synthetic data
+n <- 100  # Number of observations
+
+# Generate random data
+age <- sample(1:90, n, replace = TRUE)
+tumorsize <- sample(1:10, n, replace = TRUE)
+inv_nodes <- sample(0:50, n, replace = TRUE)
+
+# Create a data frame
+data <- data.frame(age, tumorsize, inv_nodes)
+
+# Show the first few rows of the data
+print(head(data))
+
+# Histogram of Age
+hist(data$age, 
+     breaks = seq(0, 100, by = 5), 
+     main = "Histogram of Age", 
+     xlab = "Age", 
+     ylab = "Frequency", 
+     col = "skyblue", 
+     border = "black")
+
+# Scatterplot of Tumor Size vs. Age
+plot(data$age, data$tumorsize, 
+     main = "Scatterplot of Tumor Size vs. Age", 
+     xlab = "Age", 
+     ylab = "Tumor Size", 
+     pch = 19, 
+     col = "blue")
+
+# Create age groups
+data$age_group <- cut(data$age, 
+                      breaks = c(0, 20, 40, 60, 80, 100), 
+                      labels = c("1-20", "21-40", "41-60", "61-80", "81-100"))
+
+# Boxplot of Tumor Size by Age Groups
+boxplot(tumorsize ~ age_group, 
+        data = data, 
+        main = "Boxplot of Tumor Size by Age Groups", 
+        xlab = "Age Group", 
+        ylab = "Tumor Size", 
+        col = "lightgreen")
