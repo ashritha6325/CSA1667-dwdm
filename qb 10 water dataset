@@ -1,0 +1,36 @@
+# Load necessary libraries
+library(datasets)
+
+# If the dataset is available in a CSV file
+# water <- read.csv("path_to_water_dataset.csv")
+
+# Assuming "water" dataset is already available in R
+# For demonstration, let's create a hypothetical "water" dataset
+# Since we do not have the actual "water" dataset, we'll simulate some data
+set.seed(123)  # for reproducibility
+hardness <- rnorm(100, mean = 100, sd = 20)
+mortality <- 500 - 3 * hardness + rnorm(100, mean = 0, sd = 30)
+water <- data.frame(hardness = hardness, mortality = mortality)
+
+# View the first few rows of the dataset
+head(water)
+
+# Plot the data
+plot(water$hardness, water$mortality, main = "Scatterplot of Mortality vs Hardness",
+     xlab = "Hardness", ylab = "Mortality", pch = 19, col = "blue")
+
+# Fit a linear regression model
+model <- lm(mortality ~ hardness, data = water)
+
+# Add the regression line to the plot
+abline(model, col = "red", lwd = 2)
+
+# Summarize the model
+summary(model)
+
+# Predict mortality for hardness = 88
+new_data <- data.frame(hardness = 88)
+predicted_mortality <- predict(model, newdata = new_data)
+
+# Print the predicted mortality
+cat("Predicted mortality for hardness = 88:", predicted_mortality, "\n")
